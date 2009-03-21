@@ -35,7 +35,9 @@
     'depends': ['base','crm','hr_timesheet'],
     'init_xml': [],
     'update_xml': [
-        #'crm_timesheet_view.xml',
+        'crm_timesheet_view.xml',
+        'partner_view.xml',
+        'crm_section_view.xml',
     ],
     'demo_xml': [],
     'installable': True,

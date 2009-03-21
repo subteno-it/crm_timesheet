@@ -43,8 +43,8 @@ class res_partner(osv.osv):
     _name = 'res.partner'
     _inherit = 'res.partner'
 
-    columns = {
-        'crm_analytic_ids': fields.one2many('res.partner', 'partner_id', 'CRM Analytic Account'),
+    _columns = {
+        'crm_analytic_ids': fields.one2many('res.partner.crm.analytic', 'partner_id', 'CRM Analytic Account'),
     }
 
 res_partner()

@@ -28,7 +28,7 @@ class crm_section_analytic_account(osv.osv):
     _inherit = 'crm.case.section'
 
     _columns = {
-        'account_id' : fields.many2one('account.analytic.account', 'Analytic Account', required=True, ondelete='cascade', select=True),
+        'account_id' : fields.many2one('account.analytic.account', 'Analytic Account', ondelete='cascade', select=True, help='If account is empty, it must defined on partner'),
     }
 
 crm_section_analytic_account()

@@ -44,10 +44,48 @@ class crm_case_work(osv.osv):
     }
     _order = "date desc"
 
+
+    def _get_analytic_account_id(self, cr, uid, vals, context=None):
+        """Return account ; try to find it based on case values
+            This methode can be overload to remplace account number
+        """
+        print "DEBUG: get_analytic_account_id(%r, %r)" % (vals, context)
+        obj_case = self.pool.get('crm.case').browse(cr, uid, vals['case_id'])
+        if not obj_case.section_id.account_id:
+            raise osv.except_osv(_('Bad Configuration !'), _('No default analytic account on this section.'))
+
+        out_account_id = obj_case.section_id.account_id.id
+        if obj_case.partner_id:
+            pa_obj = self.pool.get('res.partner.crm.analytic')
+            dm = [
+                ('partner_id','=',obj_case.partner_id.id),
+                ('section_id','=',obj_case.section_id.id),
+            ]
+            an_id = pa_obj.search(cr, uid, dm)
+            if an_id:
+                acc_id = pa_obj.read(cr, uid, an_id[0])
+                if acc_id['account_id']:
+                    out_account_id = acc_id['account_id'][0]
+        return out_account_id
+
+
+    def _get_analytic_account_name(self, cr, uid, vals, context=None):
+        """Return label for line of analytic account (based on case values)
+            Actualy prefix with crm.case name
+        """
+        print "DEBUG: get_analytic_account_name(%r, %r)" % (vals, context)        
+        obj_case = self.pool.get('crm.case').browse(cr, uid, vals['case_id'])
+        if vals['name']:
+            ts_name = '%s: %s' % (case.name[:64], vals['name'][:62])
+        else:
+            ts_name = case.name[:126] + ' /'
+        return ts_name
+
+
     def create(self, cr, uid, vals, *args, **kwargs):
         obj = self.pool.get('hr.analytic.timesheet')
         vals_line = {}
-        obj_case = self.pool.get('crm.case').browse(cr, uid, vals['case_id'])
+#        obj_case = self.pool.get('crm.case').browse(cr, uid, vals['case_id'])
         emp_obj = self.pool.get('hr.employee')
         emp_id = emp_obj.search(cr, uid, [('user_id', '=', vals.get('user_id', uid))])
 
@@ -63,29 +101,16 @@ class crm_case_work(osv.osv):
             raise osv.except_osv(_('Bad Configuration !'),
                  _('No journal defined on the related employee.\nFill in the timesheet tab of the employee form.'))
 
-        if not obj_case.section_id.account_id:
-            raise osv.except_osv(_('Bad Configuration !'),
-                 _('No default analytic account on this section.'))
-
-        vals_line['account_id'] = obj_case.section_id.account_id.id
-        if obj_case.partner_id:
-            pa_obj = self.pool.get('res.partner.crm.analytic')
-            dm = [
-                ('partner_id','=',obj_case.partner_id.id),
-                ('section_id','=',obj_case.section_id.id),
-            ]
-            an_id = pa_obj.search(cr, uid, dm)
-            if an_id:
-                acc_id = pa_obj.read(cr, uid, an_id[0])
-                if acc_id['account_id']:
-                    vals_line['account_id'] = acc_id['account_id'][0]
+        vals_line['account_id'] = self._get_analytic_account_id(cr, uid, vals)
 
         a =  emp.product_id.product_tmpl_id.property_account_expense.id
         if not a:
             a = emp.product_id.categ_id.property_account_expense_categ.id
         vals_line['general_account_id'] = a
         vals_line['journal_id'] = emp.journal_id.id
-        vals_line['name'] = '%s: %s' % (tools.ustr(obj_case.name), tools.ustr(vals['name']) or '/')
+
+        vals_line['name'] = self._get_analytic_account_name(cr, uid, vals)
+
         vals_line['user_id'] = vals['user_id']
         vals_line['date'] = vals['date'][:10]
         vals_line['unit_amount'] = vals['hours']
@@ -97,6 +122,7 @@ class crm_case_work(osv.osv):
         vals['hr_analytic_timesheet_id'] = timeline_id
         return super(crm_case_work,self).create(cr, uid, vals, *args, **kwargs)
 
+
     def write(self, cr, uid, ids, vals, context=None):
         vals_line = {}
 
@@ -105,7 +131,7 @@ class crm_case_work(osv.osv):
             if line_id:
                 obj = self.pool.get('hr.analytic.timesheet')
                 if 'name' in vals:
-                    vals_line['name'] = '%s: %s' % (case.name, vals['name'] or '/')
+                    vals_line['name'] = self._get_analytic_account_name(cr, uid, vals)
                 if 'user_id' in vals:
                     vals_line['user_id'] = vals['user_id']
                 if 'date' in vals:

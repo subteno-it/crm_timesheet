@@ -39,6 +39,7 @@ class res_partner_crm_analytic(osv.osv):
 
 res_partner_crm_analytic()
 
+
 class res_partner(osv.osv):
     _name = 'res.partner'
     _inherit = 'res.partner'

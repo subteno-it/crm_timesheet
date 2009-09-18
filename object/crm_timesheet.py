@@ -76,7 +76,7 @@ class crm_case_work(osv.osv):
         print "DEBUG: get_analytic_account_name(%r, %r)" % (vals, context)        
         obj_case = self.pool.get('crm.case').browse(cr, uid, vals['case_id'])
         if vals['name']:
-            ts_name = '%s: %s' % (case.name[:64], vals['name'][:62])
+            ts_name = '%s: %s' % (obj_case.name[:64], vals['name'][:62])
         else:
             ts_name = case.name[:126] + ' /'
         return ts_name

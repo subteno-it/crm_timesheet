@@ -20,6 +20,8 @@
 #
 ##############################################################################
 
-import object
+import partner
+import crm_section
+import crm_timesheet
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

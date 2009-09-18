@@ -1,0 +1,6 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"acl_crm_case","crm_case [user]","crm.model_crm_case","hr.group_hr_user",1,1,1,1
+"acl_crm_case_work","crm_case_work [user]","model_crm_case_work","hr.group_hr_user",1,1,1,1
+"acl_res_partner_crm_analytic","res_partner_crm_analytic [user]","model_res_partner_crm_analytic","hr.group_hr_user",1,1,1,1
+"acl_crm_case_stage","crm_case_stage [user]","crm_cfg_common.model_crm_case_stage","hr.group_hr_user",1,0,0,0
+"acl_crm_case_category2","crm_case_category2 [user]","crm_cfg_common.model_crm_case_category2","hr.group_hr_user",1,0,0,0

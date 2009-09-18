@@ -23,5 +23,6 @@
 import partner
 import crm_section
 import crm_timesheet
+import account_analytic_line
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

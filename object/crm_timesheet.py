@@ -1,4 +1,5 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
+
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution	
@@ -49,7 +50,7 @@ class crm_case_work(osv.osv):
         """Return account ; try to find it based on case values
             This methode can be overload to remplace account number
         """
-        print "DEBUG: get_analytic_account_id(%r, %r)" % (vals, context)
+        print "DEBUG: get_analytic_account_id ROOT (%r, %r)" % (vals, context)
         obj_case = self.pool.get('crm.case').browse(cr, uid, vals['case_id'])
         if not obj_case.section_id.account_id:
             raise osv.except_osv(_('Bad Configuration !'), _('No default analytic account on this section.'))
@@ -83,6 +84,7 @@ class crm_case_work(osv.osv):
 
 
     def create(self, cr, uid, vals, *args, **kwargs):
+        print "DEBUG: create(%r)" % vals
         obj = self.pool.get('hr.analytic.timesheet')
         vals_line = {}
 #        obj_case = self.pool.get('crm.case').browse(cr, uid, vals['case_id'])
@@ -103,6 +105,7 @@ class crm_case_work(osv.osv):
 
         vals_line['account_id'] = self._get_analytic_account_id(cr, uid, vals)
 
+        print "DEBUG: create > %r" % emp.product_id.name
         a =  emp.product_id.product_tmpl_id.property_account_expense.id
         if not a:
             a = emp.product_id.categ_id.property_account_expense_categ.id
@@ -124,6 +127,7 @@ class crm_case_work(osv.osv):
 
 
     def write(self, cr, uid, ids, vals, context=None):
+        print "DEBUG: write(%r)" % vals
         vals_line = {}
 
         for case in self.pool.get('crm.case.work').browse(cr, uid, ids):

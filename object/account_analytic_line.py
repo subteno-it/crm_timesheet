@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution	
-#    Copyright (C) 2008-2009 Syleam (<http://syleam.fr>). All Rights Reserved
+#    Copyright (C) 2004-2009 Tiny SPRL (<http://tiny.be>). All Rights Reserved
 #    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -20,35 +19,19 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-# Date      Author      Description
-# 20090918  SYLEAM/CB   Réorganisation, Ajout des acl
-#
-##############################################################################
 
 
-{
-    'name': 'CRM Timesheet',
-    'version': '1.0',
-    'category': 'Generic Modules/CRM & SRM',
-    'description': """
-    Add timesheet on CRM (the same method as task's project),
-    On partner form, CRM Analytic tab, define analytic account by CRM Section
-    Define the default analytic account on each section
-    Fill your summary work on the crm case.
-    """,
-    'author': 'Syleam',
-    'depends': ['base','crm','hr_timesheet'],
-    'init_xml': [],
-    'update_xml': [
-        'view/crm_timesheet_view.xml',
-        'view/partner_view.xml',
-        'view/crm_section_view.xml',
-		"security/ir.model.access.csv", 
-    ],
-    'demo_xml': [],
-    'installable': True,
-    'active': False,
-    'certificate': False,
-}
+from osv import osv, fields
+#from tools.translate import _
+
+class account_analytic_line(osv.osv):
+    _inherit = 'account.analytic.line'
+
+    _columns = {
+        'general_account_id' : fields.many2one('account.account', 'General Account number', required=False, ondelete='cascade'),
+    }
+
+account_analytic_line()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+

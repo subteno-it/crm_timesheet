@@ -30,7 +30,7 @@
         This module lets you transfer the entries under CRM Management to
         the Timesheet line entries for particular date and particular user with the effect of creating, editing and deleting either ways.
     """,
-    'author': 'SYLEAM Info Services',
+    'author': 'SYLEAM',
     'website': 'http://www.Syleam.fr/',
     'depends': [
         'crm',

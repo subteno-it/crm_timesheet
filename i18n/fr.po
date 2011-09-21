@@ -81,6 +81,7 @@ msgstr "Temps passé"
 
 #. module: crm_timesheet
 #: field:crm.lead,duration_timesheet:0
+#: field:crm.meeting,duration_timesheet:0
 #: field:crm.phonecall,duration_timesheet:0
 msgid "Hours spend"
 msgstr "Heures effectuées"
@@ -98,6 +99,7 @@ msgstr "CRM Analytique"
 
 #. module: crm_timesheet
 #: view:crm.lead:0
+#: view:crm.meeting:0
 #: view:crm.phonecall:0
 msgid "Summary Work"
 msgstr "Résumé du travail effectué"
@@ -159,6 +161,7 @@ msgstr "Travail effectué"
 
 #. module: crm_timesheet
 #: field:crm.lead,timesheet_ids:0
+#: field:crm.meeting,timesheet_ids:0
 #: field:crm.phonecall,timesheet_ids:0
 msgid "Messages"
 msgstr "Messages"
@@ -268,6 +271,7 @@ msgstr ""
 #: field:crm.analytic.timesheet,analytic_account_id:0
 #: field:crm.analytic.timesheet.configuration,analytic_account_id:0
 #: field:crm.lead,analytic_account_id:0
+#: field:crm.meeting,analytic_account_id:0
 #: field:crm.phonecall,analytic_account_id:0
 #: model:ir.model,name:crm_timesheet.model_account_analytic_account
 #: field:res.partner.crm.analytic,analytic_account_id:0

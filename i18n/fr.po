@@ -106,6 +106,8 @@ msgstr "Résumé du travail effectué"
 
 #. module: crm_timesheet
 #: view:crm.lead:0
+#: view:crm.meeting:0
+#: view:crm.phonecall:0
 msgid "Timesheet"
 msgstr "Feuille de temps"
 

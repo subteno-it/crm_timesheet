@@ -37,7 +37,6 @@ class crm_meeting(osv.osv):
         'duration_timesheet': fields.function(crm_operators.duration_calc, method=True, string='Hours spend',
             store = {
                 'crm.meeting': (lambda self, cr, uid, ids, c={}: ids, ['timesheet_ids'], 10),
-                'crm.analytic.timesheet': (crm_operators.get_crm, ['hours', 'analytic_account_id'], 10),
             },)
     }
 

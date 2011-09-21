@@ -38,7 +38,6 @@ class crm_lead(osv.osv):
         'duration_timesheet': fields.function(crm_operators.duration_calc, method=True, string='Hours spend',
             store = {
                 'crm.lead': (lambda self, cr, uid, ids, c={}: ids, ['timesheet_ids'], 10),
-                'crm.analytic.timesheet': (crm_operators.get_crm, ['hours', 'analytic_account_id'], 10),
             },)
     }
 
@@ -57,7 +56,7 @@ class crm_lead(osv.osv):
         """
         if not part:
             return {'value': {'partner_address_id': False,
-                            'email_from': False, 
+                            'email_from': False,
                             'phone': False,
                             'analytic_account_id': False,
                             }}

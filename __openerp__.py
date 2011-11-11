@@ -32,6 +32,9 @@
     """,
     'author': 'SYLEAM',
     'website': 'http://www.Syleam.fr/',
+    'images': [
+        'images/syleam.png',
+    ],
     'depends': [
         'crm',
         'hr_timesheet',

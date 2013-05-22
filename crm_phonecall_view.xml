@@ -24,7 +24,7 @@
         #
         ##############################################################################
 
-        <record model="ir.ui.view" id="view_crm_case_form_view_inboud_phonecall_timesheet">
+        <!--record model="ir.ui.view" id="view_crm_case_form_view_inboud_phonecall_timesheet">
             <field name="name">crm.phonecall.timesheet.form</field>
             <field name="model">crm.phonecall</field>
             <field name="type">form</field>
@@ -35,7 +35,7 @@
                     <field name="duration_timesheet" widget="float_time"/>
                     <field name="analytic_account_id" domain="[('type', '=', 'normal'), ('state', 'in', ('open', 'pending'))]"/>
                     <newline/>
-                    <field name="timesheet_ids" nolabel="1" mode="tree,form" colspan="4" context="{'default_analytic_account_id': analytic_account_id}">
+                    <field name="timesheet_ids" nolabel="1" colspan="4" context="{'default_analytic_account_id': analytic_account_id}">
                         <tree string="Summary Work" editable="bottom">
                             <field name="date"/>
                             <field name="user_id"/>
@@ -53,7 +53,7 @@
                     </field>
                 </xpath>
             </field>
-        </record>
+        </record-->
 
         <record model="ir.ui.view" id="view_crm_case_form_view_phonecall_timesheet">
             <field name="name">crm.phonecall.timesheet.form</field>
@@ -61,12 +61,12 @@
             <field name="type">form</field>
             <field name="inherit_id" ref="crm.crm_case_phone_form_view"/>
             <field name="arch" type="xml">
-                <xpath expr="/form/field[@name='description']" position="after">
-                    <separator colspan="4" />
-                    <field name="duration_timesheet" widget="float_time"/>
-                    <field name="analytic_account_id" domain="[('type', '=', 'normal'), ('state', '=', 'open')]"/>
-                    <newline/>
-                    <field name="timesheet_ids" nolabel="1" mode="tree,form" colspan="4" context="{'default_analytic_account_id': analytic_account_id}">
+                <xpath expr="//field[@name='description']" position="after">
+                    <group col="4">
+                        <field name="duration_timesheet" widget="float_time"/>
+                        <field name="analytic_account_id" domain="[('type', '=', 'normal'), ('state', '=', 'open')]"/>
+                    </group>
+                    <field name="timesheet_ids" nolabel="1" colspan="4" context="{'default_analytic_account_id': analytic_account_id}">
                         <tree string="Summary Work" editable="bottom">
                             <field name="date"/>
                             <field name="user_id"/>

@@ -30,12 +30,13 @@
             <field name="type">form</field>
             <field name="inherit_id" ref="crm.crm_case_form_view_leads"/>
             <field name="arch" type="xml">
-                <xpath expr="/form/notebook" position="inside">
+                <xpath expr="//notebook" position="inside">
                     <page string="Timesheet">
-                        <field name="duration_timesheet" widget="float_time"/>
-                        <field name="analytic_account_id" domain="[('type','=','normal'),('state','in',('open', 'pending'))]"/>
-                        <newline/>
-                        <field name="timesheet_ids" nolabel="1" mode="tree,form" colspan="4" context="{'default_analytic_account_id': analytic_account_id}">
+                        <group col="4">
+                            <field name="duration_timesheet" widget="float_time"/>
+                            <field name="analytic_account_id" domain="[('type','=','normal'),('state','in',('open', 'pending'))]"/>
+                        </group>
+                        <field name="timesheet_ids" nolabel="1" colspan="4" context="{'default_analytic_account_id': analytic_account_id}">
                             <tree string="Summary Work" editable="bottom">
                                 <field name="date"/>
                                 <field name="user_id"/>

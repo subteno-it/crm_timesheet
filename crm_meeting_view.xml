@@ -24,7 +24,7 @@
         #
         ##############################################################################
 
-        <record model="ir.ui.view" id="view_crm_case_form_view_meetings_timesheet">
+        <!--record model="ir.ui.view" id="view_crm_case_form_view_meetings_timesheet">
             <field name="name">crm.meeting.timesheet.form</field>
             <field name="model">crm.meeting</field>
             <field name="type">form</field>
@@ -35,7 +35,7 @@
                         <field name="duration_timesheet" widget="float_time"/>
                         <field name="analytic_account_id" domain="[('type','=','normal'),('state','in', ('open', 'pending'))]"/>
                         <newline/>
-                        <field name="timesheet_ids" nolabel="1" mode="tree,form" colspan="4" context="{'default_analytic_account_id': analytic_account_id}">
+                        <field name="timesheet_ids" nolabel="1" colspan="4" context="{'default_analytic_account_id': analytic_account_id}">
                             <tree string="Summary Work" editable="bottom">
                                 <field name="date"/>
                                 <field name="user_id"/>
@@ -54,7 +54,7 @@
                     </page>
                 </xpath>
             </field>
-        </record>
+        </record-->
 
     </data>
 </openerp>

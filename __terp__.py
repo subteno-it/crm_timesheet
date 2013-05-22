@@ -2,7 +2,7 @@
 
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution	
+#    OpenERP, Open Source Management Solution
 #    Copyright (C) 2008-2009 Syleam (<http://syleam.fr>). All Rights Reserved
 #    $Id$
 #
@@ -37,13 +37,17 @@
     Fill your summary work on the crm case.
     """,
     'author': 'Syleam',
-    'depends': ['base','crm','hr_timesheet'],
+    'depends': [
+        'base',
+        'crm',
+        'hr_timesheet',
+    ],
     'init_xml': [],
     'update_xml': [
-        'view/crm_timesheet_view.xml',
-        'view/partner_view.xml',
-        'view/crm_section_view.xml',
-		"security/ir.model.access.csv", 
+        'view/crm_timesheet.xml',
+        'view/partner.xml',
+        'view/crm_section.xml',
+        "security/ir.model.access.csv",
     ],
     'demo_xml': [],
     'installable': True,

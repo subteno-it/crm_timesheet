@@ -8,8 +8,13 @@
             <field name="type">form</field>
             <field name="inherit_id" ref="crm.crm_case-view"/>
             <field name="arch" type="xml">
-                <notebook position="inside">
+                <xpath expr="/form/notebook" position="inside">
                     <page string="Timesheet">
+                        <separator string="Analytic" colspan="4"/>
+                        <group name="analytic" colspan="4">
+                            <field name="analytic_account_id" domain="[('type','=','normal'),('partner_id','=',partner_id)]"/>
+                            <newline/>
+                        </group>
                         <field name="timesheet_ids" nolabel="1" mode="tree,form">
                             <tree string="Summary Work" editable="bottom">
                                 <field name="date"/>
@@ -25,7 +30,7 @@
                             </form>
                         </field>
                     </page>
-                </notebook>
+                </xpath>
             </field>
         </record>
 

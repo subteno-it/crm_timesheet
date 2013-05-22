@@ -3,6 +3,7 @@
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2008-2009 Syleam (<http://syleam.fr>). All Rights Reserved
+#    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -19,8 +20,16 @@
 #
 ##############################################################################
 
-import object
-import report
-import wizard
+from osv import osv
+from osv import fields
+
+class account_analytic_account(osv.osv):
+    _inherit = 'account.analytic.account'
+
+    _columns = {
+        'rounding_duration': fields.float('Rouding Duration', help="This field allow to rounding duration of cases.\nExample :\n- value to 00:15, we have a case with timesheet to 00:35, the duration will be 00:45\n- value to 00:15, we have a case with timesheet to 00:30, the duration will be 00:30"),
+    }
+
+account_analytic_account()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

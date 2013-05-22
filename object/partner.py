@@ -1,7 +1,7 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution	
+#    OpenERP, Open Source Management Solution
 #    Copyright (C) 2008-2009 Syleam (<http://syleam.fr>). All Rights Reserved
 #    $Id$
 #
@@ -20,13 +20,14 @@
 #
 ##############################################################################
 
-from osv import fields, osv
+from osv import osv
+from osv import fields
 
 class res_partner_crm_analytic(osv.osv):
     """
-    Define one analytic account by section, 
+    Define one analytic account by section,
     to disable the analytic account for a section, add line with section and
-    not fill the analytic account 
+    not fill the analytic account
     """
     _name = 'res.partner.crm.analytic'
     _description = 'CRM Partner Analytic Account'
@@ -39,9 +40,10 @@ class res_partner_crm_analytic(osv.osv):
 
 res_partner_crm_analytic()
 
-
 class res_partner(osv.osv):
-    _name = 'res.partner'
+    """
+    Add a new tab on partner, to select the analytic account by section
+    """
     _inherit = 'res.partner'
 
     _columns = {

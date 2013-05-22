@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
@@ -28,7 +27,7 @@
 
 {
     'name': 'CRM Timesheet',
-    'version': '1.0',
+    'version': '1.0.2',
     'category': 'Generic Modules/CRM & SRM',
     'description': """
     Add timesheet on CRM (the same method as task's project),
@@ -47,6 +46,7 @@
         'view/crm_timesheet.xml',
         'view/partner.xml',
         'view/crm_section.xml',
+        'view/account_analytic.xml',
         "security/ir.model.access.csv",
     ],
     'demo_xml': [],

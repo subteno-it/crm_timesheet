@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution	
+#    OpenERP, Open Source Management Solution
 #    Copyright (C) 2008-2009 Syleam (<http://syleam.fr>). All Rights Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -24,5 +23,6 @@ import partner
 import crm_section
 import crm_timesheet
 import account_analytic_line
+import account
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

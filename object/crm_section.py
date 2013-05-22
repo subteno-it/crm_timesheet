@@ -1,7 +1,7 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution	
+#    OpenERP, Open Source Management Solution
 #    Copyright (C) 2008-2009 Syleam (<http://syleam.fr>). All Rights Reserved
 #    $Id$
 #
@@ -20,15 +20,20 @@
 #
 ##############################################################################
 
-from osv import fields, osv
+from osv import osv
+from osv import fields
 
 class crm_section_analytic_account(osv.osv):
     """Add default analytic account to crm case section"""
-    _name = 'crm.case.section'
     _inherit = 'crm.case.section'
 
     _columns = {
-        'account_id' : fields.many2one('account.analytic.account', 'Analytic Account', ondelete='cascade', select=True, help='If account is empty, it must defined on partner'),
+        'account_id' : fields.many2one('account.analytic.account', 'Analytic Account',
+                ondelete='cascade', select=True, help='If account is empty, it must defined on partner'),
+        'req_partner': fields.boolean('Account required on partner',
+                help='Analytic accound is required on partner form'),
+        'calculate_duration': fields.boolean('Calculate Duration ?',
+                help="Calculate duration from timesheet to duration's field.",),
     }
 
 crm_section_analytic_account()

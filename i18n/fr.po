@@ -6,40 +6,44 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 5.0.12\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2011-01-08 12:25:55+0000\n"
-"PO-Revision-Date: 2011-01-08 12:25:55+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2011-01-08 12:25+0000\n"
+"PO-Revision-Date: 2011-01-13 23:04+0000\n"
+"Last-Translator: Sebastien LANGE - http://www.Syleam.fr <Unknown>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2012-11-27 05:40+0000\n"
+"X-Generator: Launchpad (build 16309)\n"
 
 #. module: crm_timesheet
 #: constraint:ir.model:0
-msgid "The Object name must start with x_ and not contain any special character !"
+msgid ""
+"The Object name must start with x_ and not contain any special character !"
 msgstr ""
+"Le nom de l'objet doit commencer avec x_ et ne pas contenir de charactères "
+"spéciaux !"
 
 #. module: crm_timesheet
 #: field:res.partner,crm_analytic_ids:0
 msgid "CRM Analytic Account"
-msgstr ""
+msgstr "CRM Analytic Account"
 
 #. module: crm_timesheet
-#: field:crm.case.work,hr_analytic_timesheet_id:0
+#: field:crm.analytic.timesheet,hr_analytic_timesheet_id:0
 msgid "Related Timeline Id"
-msgstr ""
+msgstr "Identifiant de la chronologie associée"
 
 #. module: crm_timesheet
 #: view:crm.case:0
 #: view:crm.case.section:0
 msgid "Analytic"
-msgstr ""
+msgstr "Analytique"
 
 #. module: crm_timesheet
 #: field:crm.case.section,req_partner:0
 msgid "Account required on partner"
-msgstr ""
+msgstr "Compte analytique requis sur le partenaire"
 
 #. module: crm_timesheet
 #: code:addons/crm_timesheet/object/crm_timesheet.py:0
@@ -62,64 +66,68 @@ msgstr ""
 #: view:account.analytic.account:0
 #: view:res.partner:0
 msgid "CRM Analytic"
-msgstr ""
+msgstr "CRM Analytique"
 
 #. module: crm_timesheet
-#: view:crm.case:0
-#: field:crm.case,timesheet_ids:0
+#: view:crm.lead:0
+#: view:crm.phonecall:0
 msgid "Summary Work"
-msgstr ""
+msgstr "Résumé du travail effectué"
 
 #. module: crm_timesheet
-#: view:crm.case:0
+#: view:crm.lead:0
 msgid "Timesheet"
-msgstr ""
+msgstr "Feuille de temps"
 
 #. module: crm_timesheet
-#: field:crm.case.work,date:0
+#: field:crm.analytic.timesheet,date:0
 msgid "Date"
-msgstr ""
+msgstr "Date"
 
 #. module: crm_timesheet
-#: code:addons/crm_timesheet/object/crm_timesheet.py:0
+#: code:addons/crm_timesheet/crm_timesheet.py:69
 #, python-format
-msgid "No journal defined on the related employee.\nFill in the timesheet tab of the employee form."
+msgid ""
+"No journal defined on the related employee.\n"
+"Fill in the timesheet tab of the employee form."
 msgstr ""
+"Pas de journal défini sur l'employé concerné.\n"
+"Remplissez l'onglet de la feuille de temps du formulaire de l'employé"
 
 #. module: crm_timesheet
 #: field:res.partner.crm.analytic,section_id:0
 msgid "Section"
-msgstr ""
+msgstr "Section"
 
 #. module: crm_timesheet
 #: field:crm.case.work,case_id:0
 msgid "Case"
-msgstr ""
+msgstr "Cas"
 
 #. module: crm_timesheet
 #: constraint:ir.ui.view:0
 msgid "Invalid XML for View Architecture!"
-msgstr ""
+msgstr "XML non valide pour l'architecture de la vue"
 
 #. module: crm_timesheet
-#: model:ir.model,name:crm_timesheet.model_crm_case_work
+#: model:ir.model,name:crm_timesheet.model_crm_analytic_timesheet
 msgid "CRM summary work"
-msgstr ""
+msgstr "CRM tâche effectuée"
 
 #. module: crm_timesheet
-#: field:crm.case.work,hours:0
+#: field:crm.analytic.timesheet,hours:0
 msgid "Time spent"
-msgstr ""
+msgstr "Temps passé"
 
 #. module: crm_timesheet
-#: field:crm.case.work,name:0
+#: field:crm.analytic.timesheet,name:0
 msgid "Work summary"
-msgstr ""
+msgstr "Travail effectué"
 
 #. module: crm_timesheet
 #: help:crm.case.section,account_id:0
 msgid "If account is empty, it must defined on partner"
-msgstr ""
+msgstr "Si le compte est vide, il doit être définit au niveau du partenaire"
 
 #. module: crm_timesheet
 #: field:crm.case,analytic_account_id:0
@@ -129,7 +137,7 @@ msgstr ""
 #. module: crm_timesheet
 #: help:crm.case.section,req_partner:0
 msgid "Analytic accound is required on partner form"
-msgstr ""
+msgstr "Le compte analytique est requis sur le formulaire du partenaire"
 
 #. module: crm_timesheet
 #: code:addons/crm_timesheet/object/crm_timesheet.py:0
@@ -140,45 +148,65 @@ msgstr ""
 #. module: crm_timesheet
 #: view:res.partner:0
 msgid "Section Analytic"
-msgstr ""
+msgstr "Section Analytic"
 
 #. module: crm_timesheet
-#: code:addons/crm_timesheet/object/crm_timesheet.py:0
+#: code:addons/crm_timesheet/crm_timesheet.py:65
 #, python-format
-msgid "No product defined on the related employee.\nFill in the timesheet tab of the employee form."
+msgid ""
+"No product defined on the related employee.\n"
+"Fill in the timesheet tab of the employee form."
 msgstr ""
+"Pas de produit définit sur l'employé concerné\n"
+"Remplissez l'onglet de la feuille de temps du formulaire de l'employé"
 
 #. module: crm_timesheet
 #: model:ir.model,name:crm_timesheet.model_res_partner_crm_analytic
 msgid "CRM Partner Analytic Account"
-msgstr ""
+msgstr "CRM Partner Analytic Account"
 
 #. module: crm_timesheet
-#: code:addons/crm_timesheet/object/crm_timesheet.py:0
+#: code:addons/crm_timesheet/crm_timesheet.py:60
+#: code:addons/crm_timesheet/crm_timesheet.py:64
+#: code:addons/crm_timesheet/crm_timesheet.py:68
+#: code:addons/crm_timesheet/crm_timesheet.py:75
 #, python-format
 msgid "Bad Configuration !"
-msgstr ""
+msgstr "Mauvaise configuration !"
 
 #. module: crm_timesheet
-#: field:crm.case.work,user_id:0
+#: field:crm.analytic.timesheet,user_id:0
 msgid "Done by"
-msgstr ""
+msgstr "Assigné à"
 
 #. module: crm_timesheet
-#: field:crm.case.section,account_id:0
-#: field:res.partner.crm.analytic,account_id:0
+#: field:crm.analytic.timesheet,analytic_account_id:0
+#: field:crm.analytic.timesheet.configuration,analytic_account_id:0
+#: field:crm.lead,analytic_account_id:0
+#: field:crm.phonecall,analytic_account_id:0
+#: model:ir.model,name:crm_timesheet.model_account_analytic_account
+#: field:res.partner.crm.analytic,analytic_account_id:0
 msgid "Analytic Account"
-msgstr ""
+msgstr "Compte analytique"
 
 #. module: crm_timesheet
 #: model:ir.module.module,description:crm_timesheet.module_meta_information
-msgid "\n"
+msgid ""
+"\n"
 "    Add timesheet on CRM (the same method as task's project),\n"
-"    On partner form, CRM Analytic tab, define analytic account by CRM Section\n"
+"    On partner form, CRM Analytic tab, define analytic account by CRM "
+"Section\n"
 "    Define the default analytic account on each section\n"
 "    Fill your summary work on the crm case.\n"
 "    "
 msgstr ""
+"\n"
+"    Ajout des feuilles de temps (même méthode que les tâches de projet),\n"
+"    Sur le formulaire partenaire, onglet CRM Analytique, définit le compte "
+"analytique par défaut sur la section de la CRM\n"
+"    Définit un compte analytique par défaut pour chaque section\n"
+"    Remplir les tâches effectuées sur les cas de la CRM.\n"
+"    "
 
 #. module: crm_timesheet
 #: code:addons/crm_timesheet/object/crm_timesheet.py:0
@@ -189,17 +217,18 @@ msgstr ""
 #. module: crm_timesheet
 #: field:crm.case.section,calculate_duration:0
 msgid "Calculate Duration ?"
-msgstr "Calculate Duration ?"
+msgstr "Calculer la durée ?"
 
 #. module: crm_timesheet
+#: model:ir.model,name:crm_timesheet.model_res_partner
 #: field:res.partner.crm.analytic,partner_id:0
 msgid "Partner"
-msgstr ""
+msgstr "Partenaire"
 
 #. module: crm_timesheet
 #: field:account.analytic.account,rounding_duration:0
 msgid "Rouding Duration"
-msgstr ""
+msgstr "Temps arrondi au"
 
 #. module: crm_timesheet
 #: help:crm.case,analytic_account_id:0
@@ -209,5 +238,4 @@ msgstr ""
 #. module: crm_timesheet
 #: model:ir.module.module,shortdesc:crm_timesheet.module_meta_information
 msgid "CRM Timesheet"
-msgstr ""
-
+msgstr "CRM Timesheet"

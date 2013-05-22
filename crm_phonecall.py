@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    crm_timesheet module for OpenERP, CRM Timesheet
-#    Copyright (C) 2011 SYLEAM Info Services (<http://www.Syleam.fr/>) 
+#    Copyright (C) 2011 SYLEAM Info Services (<http://www.Syleam.fr/>)
 #              Sebastien LANGE <sebastien.lange@syleam.fr>
 #
 #    This file is a part of crm_timesheet
@@ -37,7 +37,6 @@ class crm_phonecall(osv.osv):
         'duration_timesheet': fields.function(crm_operators.duration_calc, method=True, string='Hours spend',
             store = {
                 'crm.phonecall': (lambda self, cr, uid, ids, c={}: ids, ['timesheet_ids'], 10),
-                'crm.analytic.timesheet': (crm_operators.get_crm, ['hours', 'analytic_account_id'], 10),
             },)
     }
 
@@ -56,7 +55,7 @@ class crm_phonecall(osv.osv):
         """
         if not part:
             return {'value': {'partner_address_id': False,
-                            'email_from': False, 
+                            'email_from': False,
                             'phone': False,
                             'analytic_account_id': False,
                             }}

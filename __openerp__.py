@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    crm_timesheet module for openerp, crm timesheet
-#    copyright (c) 2011 syleam info services (<http://www.syleam.fr/>) 
+#    copyright (c) 2011 syleam info services (<http://www.syleam.fr/>)
 #              sebastien lange <sebastien.lange@syleam.fr>
 #
 #    this file is a part of crm_timesheet
@@ -24,14 +24,17 @@
 
 {
     'name': 'CRM Timesheet',
-    'version': '0.1',
+    'version': '0.2',
     'category': 'Generic Modules/Human Resources',
     'description': """
         This module lets you transfer the entries under CRM Management to
         the Timesheet line entries for particular date and particular user with the effect of creating, editing and deleting either ways.
     """,
-    'author': 'SYLEAM Info Services',
+    'author': 'SYLEAM',
     'website': 'http://www.Syleam.fr/',
+    'images': [
+        'images/syleam.png',
+    ],
     'depends': [
         'crm',
         'hr_timesheet',
@@ -45,6 +48,7 @@
         'crm_lead_view.xml',
         'crm_opportunity_view.xml',
         'crm_phonecall_view.xml',
+        'crm_meeting_view.xml',
         'res_partner_view.xml',
     ],
     'demo_xml': [],

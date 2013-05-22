@@ -22,22 +22,21 @@
 #
 ##############################################################################
 
-
 from osv import osv
 from osv import fields
 import crm_operators
 
 
-class crm_lead(osv.osv):
-    _inherit = 'crm.lead'
-    _name = "crm.lead"
+class crm_meeting(osv.osv):
+    _inherit = 'crm.meeting'
+    _name = "crm.meeting"
 
     _columns = {
         'analytic_account_id': fields.many2one('account.analytic.account', 'Analytic Account', ondelete='cascade', ),
         'timesheet_ids': fields.one2many('crm.analytic.timesheet', 'res_id', 'Messages', domain=[('model', '=', _name)]),
         'duration_timesheet': fields.function(crm_operators.duration_calc, method=True, string='Hours spend',
             store = {
-                'crm.lead': (lambda self, cr, uid, ids, c={}: ids, ['timesheet_ids'], 10),
+                'crm.meeting': (lambda self, cr, uid, ids, c={}: ids, ['timesheet_ids'], 10),
             },)
     }
 
@@ -57,7 +56,6 @@ class crm_lead(osv.osv):
         if not part:
             return {'value': {'partner_address_id': False,
                             'email_from': False,
-                            'phone': False,
                             'analytic_account_id': False,
                             }}
         partner_obj = self.pool.get('res.partner')
@@ -78,7 +76,7 @@ class crm_lead(osv.osv):
             context = {}
         # Add model for crm_timesheet
         context['model'] = self._name
-        return super(crm_lead, self).create(cr, uid, values, context=context)
+        return super(crm_meeting, self).create(cr, uid, values, context=context)
 
     def write(self, cr, uid, ids, values, context=None):
         """
@@ -88,10 +86,8 @@ class crm_lead(osv.osv):
             context = {}
         # Add model for crm_timesheet
         context['model'] = self._name
-        return super(crm_lead, self).write(cr, uid, ids, values, context=context)
+        return super(crm_meeting, self).write(cr, uid, ids, values, context=context)
 
-crm_lead()
-
-
+crm_meeting()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

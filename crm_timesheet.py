@@ -3,7 +3,7 @@
 #
 #    crm_timesheet module for openerp, CRM timesheet
 #    Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>).
-#    copyright (c) 2011 syleam info services (<http://www.syleam.fr/>) 
+#    copyright (c) 2011 syleam info services (<http://www.syleam.fr/>)
 #              sebastien lange <sebastien.lange@syleam.fr>
 #
 #    this file is a part of crm_timesheet
@@ -100,10 +100,10 @@ class crm_analytic_timesheet(osv.osv):
             values_line['product_id'] = result['product_id']
             values_line['date'] = values['date'][:10]
 
-            #calculate quantity based on employee's product's uom 
+            #calculate quantity based on employee's product's uom
             values_line['unit_amount'] = values['hours']
 
-            default_uom = self.pool.get('res.users').browse(cr, uid, uid).company_id.project_time_mode_id.id
+            default_uom = self.pool.get('res.users').browse(cr, uid, uid).company_id.crm_time_mode_id.id
             if result['product_uom_id'] != default_uom:
                 values_line['unit_amount'] = uom_obj._compute_qty(cr, uid, default_uom, values['hours'], result['product_uom_id'])
             acc_id = values_line['account_id'] = values['analytic_account_id']

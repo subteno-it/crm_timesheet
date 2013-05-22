@@ -24,16 +24,16 @@
         #
         ##############################################################################
 
-        <record model="ir.ui.view" id="view_crm_case_form_view_leads_timesheet">
-            <field name="name">crm.lead.timesheet.form</field>
-            <field name="model">crm.lead</field>
+        <record model="ir.ui.view" id="view_crm_case_form_view_meetings_timesheet">
+            <field name="name">crm.meeting.timesheet.form</field>
+            <field name="model">crm.meeting</field>
             <field name="type">form</field>
-            <field name="inherit_id" ref="crm.crm_case_form_view_leads"/>
+            <field name="inherit_id" ref="crm.crm_case_form_view_meet"/>
             <field name="arch" type="xml">
                 <xpath expr="/form/notebook" position="inside">
                     <page string="Timesheet">
                         <field name="duration_timesheet" widget="float_time"/>
-                        <field name="analytic_account_id" domain="[('type','=','normal'),('state','in',('open', 'pending'))]"/>
+                        <field name="analytic_account_id" domain="[('type','=','normal'),('state','in', ('open', 'pending'))]"/>
                         <newline/>
                         <field name="timesheet_ids" nolabel="1" mode="tree,form" colspan="4" context="{'default_analytic_account_id': analytic_account_id}">
                             <tree string="Summary Work" editable="bottom">
@@ -55,5 +55,6 @@
                 </xpath>
             </field>
         </record>
+
     </data>
 </openerp>

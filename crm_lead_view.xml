@@ -27,7 +27,6 @@
         <record model="ir.ui.view" id="view_crm_case_form_view_leads_timesheet">
             <field name="name">crm.lead.timesheet.form</field>
             <field name="model">crm.lead</field>
-            <field name="type">form</field>
             <field name="inherit_id" ref="crm.crm_case_form_view_leads"/>
             <field name="arch" type="xml">
                 <xpath expr="//notebook" position="inside">

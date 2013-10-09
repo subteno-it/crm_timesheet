@@ -27,7 +27,6 @@
         <!--record model="ir.ui.view" id="view_crm_case_form_view_inboud_phonecall_timesheet">
             <field name="name">crm.phonecall.timesheet.form</field>
             <field name="model">crm.phonecall</field>
-            <field name="type">form</field>
             <field name="inherit_id" ref="crm.crm_case_inbound_phone_form_view"/>
             <field name="arch" type="xml">
                 <xpath expr="/form/field[@name='description']" position="after">
@@ -58,7 +57,6 @@
         <record model="ir.ui.view" id="view_crm_case_form_view_phonecall_timesheet">
             <field name="name">crm.phonecall.timesheet.form</field>
             <field name="model">crm.phonecall</field>
-            <field name="type">form</field>
             <field name="inherit_id" ref="crm.crm_case_phone_form_view"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='description']" position="after">

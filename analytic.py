@@ -2,8 +2,9 @@
 ##############################################################################
 #
 #    crm_timesheet module for OpenERP, CRM Timesheet
-#    Copyright (C) 2011 SYLEAM Info Services (<http://www.Syleam.fr/>) 
+#    Copyright (C) 2011 SYLEAM Info Services (<http://www.Syleam.fr/>)
 #              Sebastien LANGE <sebastien.lange@syleam.fr>
+#              Sylvain Garancher <sylvain.garancher@syleam.fr>
 #
 #    This file is a part of crm_timesheet
 #
@@ -22,17 +23,17 @@
 #
 ##############################################################################
 
-from osv import osv
-from osv import fields
+from openerp import models, fields
 
-class account_analytic_account(osv.osv):
+class account_analytic_account(models.Model):
     _inherit = 'account.analytic.account'
 
-    _columns = {
-        'rounding_duration': fields.float('Rouding Duration', help="This field allow to rounding duration of cases.\nExample :\n- value to 00:15, we have a case with timesheet to 00:35, the duration will be 00:45\n- value to 00:15, we have a case with timesheet to 00:30, the duration will be 00:30"),
-    }
-
-account_analytic_account()
-
+    rounding_duration = fields.Float(
+        string='Rouding Duration',
+        help="""This field allow to rounding duration of cases.
+            Example :
+            - value to 00:15, we have a case with timesheet to 00:35, the duration will be 00:45
+            - value to 00:15, we have a case with timesheet to 00:30, the duration will be 00:30""",
+    )
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

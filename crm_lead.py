@@ -22,30 +22,24 @@
 #
 ##############################################################################
 
-
-from osv import osv
-from osv import fields
-import crm_operators
+from openerp import models, api, fields
 
 
-class crm_lead(osv.osv):
+class crm_lead(models.Model):
     _inherit = 'crm.lead'
-    _name = "crm.lead"
 
-    _columns = {
-        'analytic_account_id': fields.many2one('account.analytic.account', 'Analytic Account', ondelete='cascade', ),
-        'timesheet_ids': fields.one2many('crm.analytic.timesheet', 'res_id', 'Messages', domain=[('model', '=', _name)]),
-        'duration_timesheet': fields.function(crm_operators.duration_calc, method=True, string='Hours spend',
-            store = {
-                'crm.lead': (lambda self, cr, uid, ids, c={}: ids, ['timesheet_ids'], 10),
-            },)
-    }
+    analytic_account_id = fields.Many2one('account.analytic.account', 'Analytic Account', ondelete='cascade', default='get_default_analytic')
+    timesheet_ids = fields.One2many('hr.analytic.timesheet', 'lead_id', 'Messages')
 
-    _defaults = {
-         'analytic_account_id': crm_operators.get_default_analytic,
-    }
+    @api.one
+    def get_default_analytic(self):
+        """
+        Gives id of analytic for this case
+        """
+        return self.env['crm.analytic.timesheet.configuration'].search([('model', '=', self._name)]).analytic_account_id.id
 
-    def onchange_partner_id(self, cr, uid, ids, part, email=False):
+    @api.multi
+    def _onchange_partner_id(self, partner_id, email=False):
         """This function returns value of partner address based on partner
         @param self: The object pointer
         @param cr: the current row, from the database cursor,
@@ -54,44 +48,22 @@ class crm_lead(osv.osv):
         @param part: Partner's id
         @email: Partner's email ID
         """
-        if not part:
-            return {'value': {'partner_address_id': False,
-                            'email_from': False,
-                            'phone': False,
-                            'analytic_account_id': False,
-                            }}
-        partner_obj = self.pool.get('res.partner')
-        addr = partner_obj.address_get(cr, uid, [part], ['contact'])
-        partners = partner_obj.browse(cr, uid, part)
-        data = {'partner_address_id': addr['contact']}
-        data.update(self.onchange_partner_address_id(cr, uid, ids, addr['contact'])['value'])
-        for timesheet in partners.crm_analytic_ids:
+        if not partner_id:
+            return {'value': {
+                'partner_address_id': False,
+                'email_from': False,
+                'phone': False,
+                'analytic_account_id': False,
+            }}
+
+        partner = self.env['res.partner'].browse(partner_id)
+        address = partner.address_get(['contact'])
+        data = {'partner_address_id': address['contact']}
+        data.update(self.onchange_partner_address_id(address['contact'])['value'])
+        for timesheet in partner.crm_analytic_ids:
             if timesheet.crm_model_id.model == self._name:
                 data['analytic_account_id'] = timesheet.analytic_account_id.id
+
         return {'value': data}
-
-    def create(self, cr, uid, values, context=None):
-        """
-        Add model in context for crm_analytic_timesheet object
-        """
-        if context is None:
-            context = {}
-        # Add model for crm_timesheet
-        context['model'] = self._name
-        return super(crm_lead, self).create(cr, uid, values, context=context)
-
-    def write(self, cr, uid, ids, values, context=None):
-        """
-        Add model in context for crm_analytic_timesheet object
-        """
-        if context is None:
-            context = {}
-        # Add model for crm_timesheet
-        context['model'] = self._name
-        return super(crm_lead, self).write(cr, uid, ids, values, context=context)
-
-crm_lead()
-
-
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

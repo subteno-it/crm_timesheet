@@ -2,13 +2,13 @@
 ##############################################################################
 #
 #    crm_timesheet module for OpenERP, CRM Timesheet
-#    Copyright (C) 2011 SYLEAM Info Services (<http://www.Syleam.fr/>)
-#              Sebastien LANGE <sebastien.lange@syleam.fr>
+#    Copyright (C) 2014 SYLEAM Info Services (<http://www.Syleam.fr/>)
+#              Sylvain Garancher <sylvain.garancher@syleam.fr>
 #
 #    This file is a part of crm_timesheet
 #
 #    crm_timesheet is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU General Public License as published by
+#    it under the terms of the GNU Affero General Public License as published by
 #    the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
@@ -22,14 +22,13 @@
 #
 ##############################################################################
 
+from openerp import models, fields
 
-import report
-import wizard
-import analytic
-import base
-import hr_timesheet
-import crm_timesheet
-import crm_lead
-import crm_phonecall
+
+class HrAnalyticTimesheet(models.Model):
+    _inherit = 'hr.analytic.timesheet'
+
+    lead_id = fields.Many2one('crm.lead', string='Lead')
+    phonecall_id = fields.Many2one('crm.phonecall', string='Phonecall')
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

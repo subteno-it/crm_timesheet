@@ -24,7 +24,7 @@
 
 {
     'name': 'CRM Timesheet',
-    'version': '0.2',
+    'version': '0.3',
     'category': 'Generic Modules/Human Resources',
     'description': """
         This module lets you transfer the entries under CRM Management to

@@ -24,11 +24,11 @@
                         <field name="crm_analytic_ids" nolabel="1">
                             <tree string="Section Analytic" editable="bottom">
                                 <field name="crm_model_id"/>
-                                <field name="analytic_account_id"/>
+                                <field name="analytic_account_id" domain="[('partner_id', '=', parent.id), ('state', '=', 'open')]"/>
                             </tree>
                             <form string="CRM Analytic">
                                 <field name="crm_model_id"/>
-                                <field name="analytic_account_id"/>
+                                <field name="analytic_account_id" domain="[('partner_id', '=', parent.id), ('state', '=', 'open')]"/>
                             </form>
                         </field>
                     </page>

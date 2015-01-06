@@ -49,7 +49,7 @@ class res_partner_crm_analytic(models.Model):
     crm_model_id = fields.Many2one('crm.analytic.timesheet.configuration', string='Model', required=True, help='Model of crm')
     analytic_account_id = fields.Many2one(
         'account.analytic.account', string='Analytic Account', ondelete='cascade',
-        domain="[('partner_id', '=', partner_id), ('state', '=', 'open'), ('type', '=', 'normal')]",
+        domain="[('partner_id', '=', partner_id), ('state', '=', 'open')]",
         help='Ananlytic account by default for this model of crm and for this partner',
     )
 

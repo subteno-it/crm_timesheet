@@ -39,7 +39,7 @@ class crm_phonecall(models.Model):
         return self.env['crm.analytic.timesheet.configuration'].search([('model', '=', self._name)]).analytic_account_id.id
 
     @api.multi
-    def _onchange_partner_id(self, partner_id, email=False):
+    def on_change_partner_id(self, partner_id):
         """This function returns value of partner address based on partner
         @param self: The object pointer
         @param cr: the current row, from the database cursor,
@@ -50,20 +50,21 @@ class crm_phonecall(models.Model):
         """
         if not partner_id:
             return {'value': {
-                'partner_address_id': False,
                 'email_from': False,
                 'phone': False,
                 'analytic_account_id': False,
             }}
-
-        partner = self['res.partner'].browse(partner_id)
-        address = partner.address_get(['contact'])
-        data = {'partner_address_id': address['contact']}
-        data.update(self.onchange_partner_address_id(address['contact'])['value'])
+        partner = self.env['res.partner'].browse(partner_id)
+        values = {
+            'partner_phone': partner.phone,
+            'partner_mobile': partner.mobile,
+        }
+        if not partner.is_company and partner.parent_id:
+            partner = partner.parent_id
         for timesheet in partner.crm_analytic_ids:
             if timesheet.crm_model_id.model == self._name:
-                data['analytic_account_id'] = timesheet.analytic_account_id.id
+                values['analytic_account_id'] = timesheet.analytic_account_id.id
 
-        return {'value': data}
+        return {'value': values}
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
